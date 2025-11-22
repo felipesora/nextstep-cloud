@@ -3,7 +3,6 @@ package br.com.nextstep.service;
 import br.com.nextstep.dto.trilha.TrilhaRequestDTO;
 import br.com.nextstep.dto.trilha.TrilhaResponseDTO;
 import br.com.nextstep.mapper.TrilhaMapper;
-import br.com.nextstep.messaging.trilha.TrilhaProducer;
 import br.com.nextstep.model.Trilha;
 import br.com.nextstep.model.enums.AreaTrilha;
 import br.com.nextstep.model.enums.NivelTrilha;
@@ -32,9 +31,6 @@ public class TrilhaService {
     @Autowired
     private TrilhaRepository trilhaRepository;
 
-    @Autowired
-    private TrilhaProducer trilhaProducer;
-
     @Transactional(readOnly = true)
     public Page<TrilhaResponseDTO> listarTodos(Pageable pageable) {
         return trilhaRepository.findAllByOrderByIdAsc(pageable)
@@ -59,7 +55,6 @@ public class TrilhaService {
         trilha.setStatus(StatusTrilha.ATIVA);
         var trilhaSalva = trilhaRepository.save(trilha);
 
-        trilhaProducer.enviarTrilhaCriada(trilhaSalva);
         return TrilhaMapper.toResponseDTO(trilhaSalva);
     }
 

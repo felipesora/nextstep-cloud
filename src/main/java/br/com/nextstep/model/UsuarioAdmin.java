@@ -27,8 +27,8 @@ import java.util.List;
 public class UsuarioAdmin implements UserDetails {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ns_admin_usuario_seq")
-    @SequenceGenerator(name = "ns_admin_usuario_seq", sequenceName = "SQ_ADMIN_USER", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ns_admin_user_id_usuario_seq")
+    @SequenceGenerator(name = "ns_admin_user_id_usuario_seq", sequenceName = "ns_admin_user_id_usuario_seq", allocationSize = 1)
     @Column(name = "id_usuario")
     @JsonProperty("id_usuario")
     private Long id;

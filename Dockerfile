@@ -1,5 +1,5 @@
 # Etapa de build: Java 21 + Maven
-FROM eclipse-temurin:17-jdk AS build
+FROM eclipse-temurin:18-jdk AS build
 
 # Instala o Maven
 RUN apt-get update && apt-get install -y maven
@@ -13,7 +13,7 @@ COPY src ./src
 RUN mvn clean install -DskipTests
 
 # Etapa de runtime: imagem menor só com Java
-FROM eclipse-temurin:17-jdk-jammy
+FROM eclipse-temurin:18-jdk-jammy
 
 WORKDIR /app
 

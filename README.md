@@ -24,93 +24,56 @@ Além disso, o usuário pode acompanhar seu progresso e interagir com outros apr
 
 ### O sistema permite:
 
-- 🎯 **Identificar a área de tecnologia** ideal para cada usuário, com base em seus interesses e habilidades;
-
--📚 **Recomendar trilhas de aprendizado personalizadas**, contendo cursos, artigos, desafios e outros conteúdos;
-
+-🎯**Identificar a área de tecnologia** ideal para cada usuário, com base em seus interesses e habilidades;
+-📚**Recomendar trilhas de aprendizado personalizadas**, contendo cursos, artigos, desafios e outros conteúdos;
 -📈 **Acompanhar o progresso do usuário** em sua jornada de aprendizado, tornando a evolução mais clara e organizada;
-
 -🤝 **Promover interação entre aprendizes**, permitindo troca de experiências e motivação;
-
 -🔍 **Centralizar e gerenciar trilhas e conteúdos** por meio de um painel para administradores;
-
 -⭐ **Receber avaliações dos usuários**, ajudando a melhorar continuamente as trilhas disponíveis;
-
 -💡 **Oferecer orientação profissional guiada por inteligência**, trazendo clareza para quem busca crescer ou iniciar na área de tecnologia.
 
 ### Estrutura da Solução
 
 O projeto foi dividido em múltiplos módulos para facilitar **escalabilidade e integração**, cada um com responsabilidades específicas:
 
-- ⚙️ **Backend REST em Java (Spring Boot)** – gerencia as entidades de **usuário, moto, movimentações e alertas**, utilizando **Spring Security com JWT** para autenticação e autorização.
-- 🖥️ **Backend MVC em Java (Spring MVC)** – oferece as mesmas entidades do backend REST Java, com um **frontend web bonito e funcional**, permitindo cadastro, edição, listagem e exclusão de dados diretamente pelo navegador. Possui **Spring Security** com validação de tipo de usuário (**Administrador** e **Comum**) para controlar o acesso às funcionalidades.
-- 🧩 **Backend REST em .NET (ASP.NET Core)** – gerencia as entidades de **moto (somente leitura das tabelas criadas pelo Java), colaboradores, serviços e peças**, integrando funcionalidades complementares ao sistema.
-- 📱 **Frontend Mobile (React Native/Expo)** – consome ambas as APIs (Java e .NET) e disponibiliza **telas de cadastro, edição, exclusão e visualização** das funcionalidades, incluindo serviços, colaboradores e estoque de peças.
-- 🗄️ **Banco de Dados Oracle** – utilizado por todos os backends, com **criação automática de tabelas** ao iniciar os projetos.
-- ☁️ **Cloud (Azure)** – responsável por hospedar o **Backend MVC Java** e o **banco de dados PostgreSQL**, utilizando **Azure App Service** para a aplicação e **Azure Database for PostgreSQL** para persistência. Essa camada garante **acessibilidade, escalabilidade e disponibilidade** do sistema em ambiente de nuvem.
+-⚙️**Backend REST em Java (Spring Boot)** – responsável por gerenciar as entidades de usuários, perfis profissionais, recomendações e trilhas de aprendizado, oferecendo endpoints seguros para análise de dados e retorno das sugestões personalizadas. Utiliza Spring Security com JWT para autenticação e autorização, garantindo acesso seguro às funcionalidades.
+-🖥️**Backend MVC em Java (Spring MVC)** – disponibiliza uma plataforma web administrativa completa, permitindo cadastro, edição, listagem e exclusão de trilhas, cursos, artigos, desafios e demais conteúdos. Possui controle de permissões via Spring Security, diferenciando administradores de usuários comuns, garantindo gestão adequada do ecossistema de aprendizado.
+-🧩**Backend REST em .NET (ASP.NET Core)** – atua como módulo complementar, focado na análise de habilidades, interesses e metas cadastradas pelos usuários, além de integrar-se a modelos de IA para gerar recomendações de trajetória profissional. Esse backend também centraliza informações de progresso e interações sociais dentro da plataforma.
+-📱**Frontend Mobile (React Native/Expo)** – consome as APIs Java e .NET para oferecer ao usuário final funcionalidades como visualização de trilhas recomendadas, acompanhamento de progresso, interação com conteúdos, edição de perfil e comunicação com outros aprendizes. Inclui telas amigáveis e responsivas para toda a jornada do NextStep.
+-🗄️**Banco de Dados Oracle** – utilizado pelos backends Java e .NET, com criação automática de tabelas, armazenando dados de usuários, trilhas, conteúdos, recomendações, progresso e interações. Garante integridade e consistência entre os módulos do sistema.
+-☁️**Cloud (Azure)** – responsável pela hospedagem do Backend MVC Java e do banco de dados PostgreSQL utilizado por parte dos serviços, através do Azure App Service e Azure Database for PostgreSQL. Essa infraestrutura em nuvem garante alta disponibilidade, escalabilidade, segurança e acessibilidade global ao sistema NextStep.
 
 ---
 
-## 🗄️ Modelagem do Banco de Dados
+## 🚀 Como Rodar o Projeto NextStep Completo
 
-Abaixo está a modelagem das tabelas utilizadas pelo sistema:
+Para utilizar o **NextStep** de forma completa, é necessário rodar simultaneamente três módulos:
 
-![Modelagem Banco de Dados](./docs/modelagem.png)
+1. **⚙️ Backend API REST em Java (Spring Boot)** – responsável por fornecer os endpoints REST que gerenciam usuários, trilhas de aprendizado, conteúdos e recomendações.
+2. **🧩 Backend API REST em .NET (ASP.NET Core)** – oferece funcionalidades complementares, como análise de habilidades, geração de recomendações e processamento de dados do perfil profissional.
+3. **📱 Frontend Mobile (React Native/Expo)** – aplicativo mobile que consome ambas as APIs e permite ao usuário acessar trilhas recomendadas, acompanhar seu progresso e interagir com conteúdos e outros aprendizes.
 
----
-
-## 🚀 Como Rodar o Projeto MotoTrack Completo
-
-Para utilizar o **MotoTrack** de forma completa, é necessário rodar simultaneamente três módulos:
-
-1. **⚙️ Backend API REST em Java (Spring Boot)** – fornece os endpoints REST para o sistema.
-2. **🧩 Backend API REST em .NET (ASP.NET Core)** – fornece funcionalidades complementares via API.
-3. **📱 Frontend Mobile (React Native/Expo)** – aplicação mobile que consome ambas as APIs e exibe todas as funcionalidades, incluindo serviços, colaboradores e estoque de peças.
-   > O **Backend MVC em Java (Spring MVC)** pode ser executado separadamente. Ele permite:
+   > O Backend MVC em Java (Spring MVC) pode ser executado separadamente. Ele permite:
    >
-   > - **📝 Login e cadastro de usuários;**
-   > - **🏍️ Cadastro, listagem, edição e exclusão de motos;**
-   > - **🔄 Cadastro, listagem e exclusão de movimentações e alertas.**
+   >📝 Login e cadastro de usuários;
+   >📚 Cadastro, listagem, edição e exclusão de trilhas de aprendizado;
+   >🧠 Gerenciamento de conteúdos como cursos, artigos, desafios e podcasts;
+   >👤 Administração de perfis e permissões de usuários.
 
 ### 🛠️ Passo a Passo
 
-1. Clone todos os repositórios:
+### ☁️ Deploy em Cloud (Azure)
 
-   - [API Rest Java](https://github.com/mototrack-challenge/mototrack-backend-rest-java)
-   - [API Rest .NET](https://github.com/mototrack-challenge/mototrack-backend-rest-dotnet)
-   - [Mobile](https://github.com/mototrack-challenge/mototrack-frontend-mobile)
-   - [MVC Java](https://github.com/mototrack-challenge/mototrack-backend-mvc-java)
-   - [Cloud](https://github.com/mototrack-challenge/mototrack-cloud)
-
-2. 🔌 Configure as credenciais de conexão com o banco Oracle nos arquivos de configuração dos backends, se necessário.
-
-   - ✅ O banco de dados e as tabelas serão **criados automaticamente** ao iniciar os backends (Java REST, Java MVC e .NET)
-
-3. 🚀 Rode os backends
-
-   - Java REST: `mvn spring-boot:run` ou rode pelo IDE favorito
-   - .NET REST: `dotnet run` ou abra no Visual Studio
-
-4. 📱 Rode o frontend mobile:
-   - Navegue até a pasta do projeto e execute `npm install` para instalar dependências
-   - Execute `npx expo start` para abrir o app no emulador ou dispositivo físico
-
-> ⚠️ Dica: primeiro inicie os backends para que o mobile consiga se conectar às APIs corretamente
-
-5. 🖥️ Para testar o **MVC Java**, basta executar o projeto normalmente; ele funciona isoladamente, sem depender dos outros módulos
-
-### ☁️ Opcional: Deploy em Cloud (Azure)
-
-Também é possível executar o **MotoTrack MVC Java** diretamente na nuvem, utilizando **Azure App Service** e **Azure Database for PostgreSQL**.
+É possível executar o **NextStep MVC Java** diretamente na nuvem, utilizando **Azure App Service** e **Azure Database for PostgreSQL**.
 
 - O passo a passo completo para realizar o deploy está descrito no repositório:  
-  👉 [MotoTrack Cloud](https://github.com/mototrack-challenge/mototrack-cloud)
+  👉 [NextStep Cloud](https://github.com/felipesora/nextstep-cloud.git)
 
 ---
 
 ## ☁️ Detalhes do Projeto em Cloud
 
-O **MotoTrack Cloud** é a versão do projeto **MVC Java** implantada na nuvem utilizando os serviços da **Microsoft Azure**.
+O **NextStep Cloud** é a versão do projeto **MVC Java** implantada na nuvem utilizando os serviços da **Microsoft Azure**.
 
 O objetivo foi tornar a aplicação acessível de forma **remota**, **automatizada** e **escalável**, garantindo **alta disponibilidade**, **integração contínua** e **entrega automatizada**.
 
@@ -134,13 +97,13 @@ O deploy em cloud utilizou os seguintes recursos principais:
 | **Pipeline CI**           | Orquestrador de CI (Continuous Integration) | Compila o projeto e executa testes automáticos a cada commit | **Azure DevOps Pipelines**        |
 | **Pipeline CD**           | Orquestrador de CD (Continuous Delivery)    | Realiza o deploy automático da aplicação na nuvem            | **Azure DevOps Pipelines**        |
 | **Banco de Dados**        | PaaS (Platform as a Service)                | Armazena os dados da aplicação de forma gerenciada           | **Azure Database for PostgreSQL** |
-| **Web App**       | App Service                       | Local onde a aplicação roda e é disponibilizada publicamente | **Azure Web App**                 |
+| **Web App**               | App Service                                 | Local onde a aplicação roda e é disponibilizada publicamente | **Azure Web App**                 |
 | **Gestão Ágil**           | Project Management                          | Organização de Sprints, tarefas e backlog do time            | **Azure Boards (DevOps)**         |
 
 
 ### 📐 Desenho da Arquitetura em Cloud
 
-![Desenho da arquitetura](docs/Arquitetura-MotoTrack.jpg)
+![Desenho da arquitetura](!!!!COLOCAR ANTES DE ENVIAR!!!!)
 
 ### ⚙️ Estrutura do Deploy e Automação (CI/CD)
 
@@ -165,17 +128,18 @@ Além da automação de deploy, o **Azure DevOps** também foi utilizado para a 
 - Essa integração entre **gestão ágil** e **CI/CD** garantiu um fluxo contínuo de desenvolvimento, testes e entrega de novas versões.
 
 **Link do Azure Boards:**
-👉 [Azure Boards - Sprint 4](https://dev.azure.com/RM555462/Sprint%204%20%E2%80%93%20Azure%20DevOps)
+👉 [Azure Boards - NextStep_Cloud](https://dev.azure.com/RM559165/NextStep_Cloud))
 
 ### 📝 Funcionalidades Disponíveis na Nuvem
 
 Na versão em cloud, o sistema mantém todas as funcionalidades do **MVC Java**:
 
-- ✅ Login e cadastro de usuários
-- 🏍️ Cadastro, edição, listagem e exclusão de motos
-- 🔄 Cadastro, listagem e exclusão de movimentações
-- 🚨 Cadastro, listagem e exclusão de alertas
-- 📊 Visualização de histórico e status das motos
+-✅ Login e cadastro de usuários
+
+-🎯 Cadastro, edição, listagem e exclusão de trilhas de aprendizado
+-📚 Cadastro, edição e organização de conteúdos (cursos, artigos, desafios, podcasts)
+-🤖 Geração e exibição de recomendações personalizadas
+-📊 Visualização de progresso, histórico de aprendizado e status das trilhas
 
 ### 🌐 Acesso ao Sistema
 
@@ -183,11 +147,11 @@ Após o deploy, a aplicação ficou acessível por meio de uma **URL pública ge
 
 ### 📊 Benefícios da Arquitetura em Cloud
 
-- 🌍 **Acesso remoto** de qualquer lugar
-- ⚙️ **Automação com CI/CD** via Azure DevOps
-- 📈 **Escalabilidade automática** via App Service
-- 🔒 **Segurança e gerenciamento** simplificados pela Azure
-- ⚡ **Alto desempenho** com banco de dados gerenciado (PostgreSQL)
+-🌍 Acesso remoto ao sistema e às trilhas de aprendizado de qualquer lugar
+-⚙️ Automação com CI/CD para facilitar atualizações contínuas dos serviços do NextStep
+-📈 Escalabilidade automática para suportar o crescimento de usuários e conteúdos
+-🔒 Segurança e gerenciamento simplificados, garantindo proteção dos dados e autenticação confiável
+-⚡ Alto desempenho com banco de dados otimizado para consultas de trilhas, perfis e recomendações
 
 > ⚠️ O uso combinado de **Azure DevOps**, **Repos**, **Pi** e **App Service** proporcionou uma experiência completa de **integração e entrega contínua (CI/CD)**, simulando o ciclo real de deploy de uma aplicação corporativa em um ambiente de **Cloud Computing**.
 
@@ -195,21 +159,19 @@ Após o deploy, a aplicação ficou acessível por meio de uma **URL pública ge
 
 ## ☁️ Como Fazer o Deploy em Cloud (Azure)
 
-O **MotoTrack Cloud** pode ser implantado na **Microsoft Azure** de duas formas:
+O **NextStep Cloud** pode ser implantado na **Microsoft Azure** de duas formas:
 
-1️⃣ **Manual**, via **Azure CLI**, ou
+1️ **Automatizada**, via **CI/CD com Azure DevOps**.
 
-2️⃣ **Automatizada**, via **CI/CD com Azure DevOps**.
-
-> 💡 **Importante**: ambas as opções exigem a **criação prévia do banco de dados** via **Azure CLI**.
+   > 💡 **Importante**: É necessário a **criação prévia do banco de dados** via **Azure CLI**.
 
 ### 1️⃣ Clonar o Repositório
 
 Clone o projeto disponível no GitHub:
 
 ```bash
-git clone https://github.com/mototrack-challenge/mototrack-cloud.git
-cd mototrack-cloud
+git clone https://github.com/felipesora/nextstep-cloud.git
+cd nextstep-cloud
 ```
 
 ### 2️⃣ Preparar o Ambiente
@@ -232,29 +194,29 @@ az account show
 1. Criar um **Resource Group**:
 
 ```bash
-az group create --name MotoTrackRG --location brazilsouth
+az group create --name NextStepRG --location brazilsouth
 ```
 
 2. Criar um **servidor PostgreSQL**:
 
 ```bash
-az postgres flexible-server create --resource-group MotoTrackRG --name mototrackdbserver --location brazilsouth --admin-user adminuser --admin-password "MotoTrack123!" --tier Burstable --sku-name standard_b1ms --storage-size 32 --version 15 --public-access All
+az postgres flexible-server create --resource-group NextStepRG --name nextstepdbserver --location brazilsouth --admin-user adminuser --admin-password "NextStep123!" --tier Burstable --sku-name standard_b1ms --storage-size 32 --version 15 --public-access All
 ```
 
 3. Criar um **banco de dados** dentro do servidor:
 
 ```bash
-az postgres flexible-server db create --resource-group MotoTrackRG --server-name mototrackdbserver --database-name mototrack
+az postgres flexible-server db create --resource-group NextStepRG --server-name nextstepdbserver --database-name nextstep
 ```
 
 4. Obter a **URL do servidor**:
 
 ```bash
-az postgres flexible-server show --resource-group MotoTrackRG --name mototrackdbserver --query "fullyQualifiedDomainName"
+az postgres flexible-server show --resource-group NextStepRG --name nextstepdbserver --query "fullyQualifiedDomainName"
 ```
 
 5. Conectar no banco via **pgAdmin4** (ou psql), usando a URL, usuário e senha.
-   - Abra o banco `mototrack`
+   - Abra o banco `nextstep`
    - Execute o script SQL disponível no repositório: `script_bd.sql`
 
 ### 🚀 Opção 1 – Deploy Automatizado (CI/CD via Azure DevOps)
@@ -267,13 +229,13 @@ Essa abordagem é ideal para times que desejam manter **automatização**, **ver
 1. Criar um **App Service Plan**:
 
 ```bash
-az appservice plan create --name MotoTrackPlan --resource-group MotoTrackRG --sku B1 --is-linux
+az appservice plan create --name NextStepPlan --resource-group NextStepRG --sku B1 --is-linux
 ```
 
 2. Criar o **App Service com JDK 17**:
 
 ```bash
-az webapp create --resource-group MotoTrackRG --plan MotoTrackPlan --name mototrack-app --runtime "JAVA:17-java17"
+az webapp create --resource-group NextStepRG --plan NextStepPlan --name nextstep-app --runtime "JAVA:17-java17"
 ```
 
 3. Configurar as **variáveis de ambiente do App Service**:

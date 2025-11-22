@@ -241,7 +241,7 @@ az webapp create --resource-group NextStepRG --plan NextStepPlan --name nextstep
 3. Configurar as **variáveis de ambiente do App Service**:
 
 ```bash
-az webapp config appsettings set --resource-group MotoTrackRG --name mototrack-app --settings DB_URL="jdbc:postgresql://mototrackdbserver.postgres.database.azure.com:5432/mototrack" DB_USER="adminuser" DB_PASSWORD="MotoTrack123!"
+az webapp config appsettings set --resource-group NextStepRG --name nextstep-app --settings DB_URL="jdbc:postgresql://nextstepdbserver.postgres.database.azure.com:5432/nextstep" DB_USER="adminuser" DB_PASSWORD="NextStep123!"
 ```
 
 #### 🔧 Etapas do Pipeline
@@ -286,9 +286,9 @@ No **IntelliJ IDEA**:
 
 Antes de gerar o .jar, defina as mesmas variáveis de ambiente do App Service na sua máquina:
 ```bash
-DB_URL = "jdbc:postgresql://mototrackdbserver.postgres.database.azure.com:5432/mototrack"
+DB_URL = "jdbc:postgresql://nextstepdbserver.postgres.database.azure.com:5432/nextstep"
 DB_USER = "adminuser"
-DB_PASSWORD = "MotoTrack123!"
+DB_PASSWORD = "NextStep123!"
 ```
 > 🔄 Reinicie o computador para que as alterações entrem em vigor.
 
@@ -301,25 +301,25 @@ mvn clean package
 3. Criar um **App Service Plan**:
 
 ```bash
-az appservice plan create --name MotoTrackPlan --resource-group MotoTrackRG --sku B1 --is-linux
+az appservice plan create --name NextStepPlan --resource-group NextStepRG --sku B1 --is-linux
 ```
 
 4. Criar o **App Service com JDK 17**:
 
 ```bash
-az webapp create --resource-group MotoTrackRG --plan MotoTrackPlan --name mototrack-app --runtime "JAVA:17-java17"
+az webapp create --resource-group NextStepRG --plan NextStepPlan --name nextstep-app --runtime "JAVA:17-java17"
 ```
 
 5. Configurar as **variáveis de ambiente do App Service**:
 
 ```bash
-az webapp config appsettings set --resource-group MotoTrackRG --name mototrack-app --settings DB_URL="jdbc:postgresql://mototrackdbserver.postgres.database.azure.com:5432/mototrack" DB_USER="adminuser" DB_PASSWORD="MotoTrack123!"
+az webapp config appsettings set --resource-group NextStepRG --name nextstep-app --settings DB_URL="jdbc:postgresql://nextstepdbserver.postgres.database.azure.com:5432/nextstep" DB_USER="adminuser" DB_PASSWORD="NextStep123!"
 ```
 
 5. Fazer o **deploy da aplicação**:
 
 ```bash
-az webapp deploy --resource-group MotoTrackRG --name mototrack-app --src-path target/mototrack-backend-java-0.0.1-SNAPSHOT.jar --type jar
+az webapp deploy --resource-group NextStepRG --name NextStep-app --src-path target/nextstep-backend-java-0.0.1-SNAPSHOT.jar --type jar
 ```
 
 ### 🌐 Acessar a Aplicação
@@ -327,7 +327,7 @@ az webapp deploy --resource-group MotoTrackRG --name mototrack-app --src-path ta
 Após o deploy, a aplicação estará disponível publicamente em uma URL gerada pelo **App Service**, no formato:
 
 ```bash
-https://mototrack-app.azurewebsites.net
+https://nextstep-app.azurewebsites.net
 ```
 
 > ⚠️ Lembre-se: o banco de dados **PostgreSQL** precisa estar ativo e com as tabelas criadas (via script SQL) antes de rodar a aplicação em cloud.
@@ -336,7 +336,7 @@ https://mototrack-app.azurewebsites.net
 
 ## 📹 Demonstração em Vídeo
 
-Para visualizar o **MotoTrack MVC Java** em funcionamento na **Azure**, assista aos vídeos abaixo — cada um demonstra um método diferente de deploy:
+Para visualizar o **NextStep MVC Java** em funcionamento na **Azure**, assista aos vídeos abaixo — cada um demonstra um método diferente de deploy:
 
 ### ⚙️ Opção 1 – Deploy Manual via Azure CLI
 
@@ -348,10 +348,10 @@ Neste vídeo, é mostrado o **passo a passo completo de criação e configuraç�
 - Configuração do **App Service** e variáveis de ambiente
 - Deploy do projeto Java para o App Service
 - Testes das principais funcionalidades:
-  - Login e cadastro de usuários (admin e comum)
-  - Cadastro, edição, listagem e exclusão de motos
-  - Cadastro, listagem e exclusão de movimentações e alertas
-- Navegação pelas telas do sistema diretamente pelo navegador, mostrando que o projeto está rodando na nuvem
+  -Login e cadastro de usuários (administradores e comuns)
+  -Cadastro, edição, listagem e exclusão de trilhas de aprendizado
+  -Cadastro, listagem e exclusão de conteúdos (cursos, artigos, desafios, podcasts)
+  -Navegação pelas telas do sistema diretamente pelo navegador, demonstrando que a plataforma está hospedada e funcionando na nuvem
 
 ### 🚀 Opção 2 – Deploy Automatizado via CI/CD (Azure DevOps)
 
@@ -365,10 +365,11 @@ Este vídeo apresenta o processo de **integração e entrega contínua (CI/CD)**
 - Execução automática do **pipeline de build (CI)**
 - **Publicação automatizada** no **App Service (CD)**
 - Testes das principais funcionalidades:
-  - Login e cadastro de usuários (admin e comum)
-  - Cadastro, edição, listagem e exclusão de motos
-  - Cadastro, listagem e exclusão de movimentações e alertas
-- Navegação pelas telas do sistema diretamente pelo navegador, mostrando que o projeto está rodando na nuvem
+  -Login e cadastro de usuários (administradores e comuns)
+  -Cadastro, edição, listagem e exclusão de trilhas de aprendizado
+  -Cadastro, listagem e exclusão de conteúdos (cursos, artigos, desafios, podcasts)
+  -Navegação pelas telas do sistema diretamente pelo navegador, demonstrando que a plataforma está hospedada e funcionando na nuvem
+
 
 
 > ⚠️ **Importante**: para acompanhar os vídeos e testar o projeto, o **banco PostgreSQL** e o **App Service** precisam estar **ativos e configurados previamente**, conforme o passo a passo da seção de deploy.

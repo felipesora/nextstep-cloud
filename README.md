@@ -9,7 +9,6 @@
 ## 📌 Sumário
 
 - [📝 Descrição da Solução](#-descrição-da-solução)
-- [🗄️ Modelagem do Banco de Dados](#️-modelagem-do-banco-de-dados)
 - [🚀 Como Rodar o Projeto NextStep Completo](#-como-rodar-o-projeto-NexyStep-completo)
 - [☁️ Detalhes do Projeto em Cloud](#️-detalhes-do-projeto-em-cloud)
 - [🚀 Como Fazer o Deploy em Cloud (Azure)](#️-como-fazer-o-deploy-em-cloud-azure)
@@ -100,10 +99,6 @@ O deploy em cloud utilizou os seguintes recursos principais:
 | **Web App**               | App Service                                 | Local onde a aplicação roda e é disponibilizada publicamente | **Azure Web App**                 |
 | **Gestão Ágil**           | Project Management                          | Organização de Sprints, tarefas e backlog do time            | **Azure Boards (DevOps)**         |
 
-
-### 📐 Desenho da Arquitetura em Cloud
-
-![Desenho da arquitetura](!!!!COLOCAR ANTES DE ENVIAR!!!!)
 
 ### ⚙️ Estrutura do Deploy e Automação (CI/CD)
 
